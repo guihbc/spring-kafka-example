@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: kafka-example
+  graphql:
+    graphiql:
+      enabled: true

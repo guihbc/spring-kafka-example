@@ -1,0 +1,82 @@
+input CreateOrderInput {
+    userId: String!
+    status: OrderStatus!
+    expectedDeliveryDate: String!
+    deliveredAt: String
+    products: [ProductInput]!
+    deliveryAddress: DeliveryAddressInput!
+}
+
+enum OrderStatus {
+    CREATED
+    WAITING_PAYMENT
+    PAYED
+    PREPARING
+    IN_TRANSIT
+    DELIVERED
+    CANCELLED
+}
+
+input ProductInput {
+    id: ID!
+    name: String!
+    quantity: Int!
+    total: Int!
+    totalWithoutDiscount: Int!
+    discount: Int!
+}
+
+input DeliveryAddressInput {
+    street: String!
+    neighborhood: String!
+    number: Int!
+    zipcode: String!
+    city: String!
+    state: String!
+    complement: String
+}
+
+type Order {
+    id: ID!
+    total: Int!
+    userId: String!
+    status: OrderStatus!
+    expectedDeliveryDate: String!
+    deliveredAt: String
+    createdAt: String!
+    updatedAt: String!
+    products: [Product]!
+    deliveryAddress: DeliveryAddress!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    quantity: Int!
+    total: Int!
+    totalWithoutDiscount: Int!
+    discount: Int!
+}
+
+type DeliveryAddress {
+    street: String!
+    neighborhood: String!
+    number: Int!
+    zipcode: String!
+    city: String!
+    state: String!
+    complement: String
+}
+
+type Mutation {
+    createOrder(input: CreateOrderInput!): Order
+}
+
+type Query {
+    _empty: String
+}
+
+schema {
+    mutation: Mutation
+    query: Query
+}
