@@ -1,8 +1,9 @@
+scalar DateTime
+
 input CreateOrderInput {
     userId: String!
-    status: OrderStatus!
-    expectedDeliveryDate: String!
-    deliveredAt: String
+    expectedDeliveryDate: DateTime!
+    deliveredAt: DateTime
     products: [ProductInput]!
     deliveryAddress: DeliveryAddressInput!
 }
@@ -41,10 +42,10 @@ type Order {
     total: Int!
     userId: String!
     status: OrderStatus!
-    expectedDeliveryDate: String!
-    deliveredAt: String
-    createdAt: String!
-    updatedAt: String!
+    expectedDeliveryDate: DateTime!
+    deliveredAt: DateTime
+    createdAt: DateTime!
+    updatedAt: DateTime!
     products: [Product]!
     deliveryAddress: DeliveryAddress!
 }

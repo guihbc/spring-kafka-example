@@ -1,15 +1,16 @@
 package guihbc.kafka_example.domain.order;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 public class Order {
     private String userId;
     private OrderStatus status;
     private Integer total;
-    private String createdAt;
-    private String updatedAt;
-    private String expectedDeliveryDate;
-    private String deliveredAt;
+    private OffsetDateTime createdAt;
+    private OffsetDateTime updatedAt;
+    private OffsetDateTime expectedDeliveryDate;
+    private OffsetDateTime deliveredAt;
     private List<Product> products;
     private DeliveryAddress deliveryAddress;
 
@@ -29,19 +30,19 @@ public class Order {
         this.status = status;
     }
 
-    public String getExpectedDeliveryDate() {
+    public OffsetDateTime getExpectedDeliveryDate() {
         return expectedDeliveryDate;
     }
 
-    public void setExpectedDeliveryDate(String expectedDeliveryDate) {
+    public void setExpectedDeliveryDate(OffsetDateTime expectedDeliveryDate) {
         this.expectedDeliveryDate = expectedDeliveryDate;
     }
 
-    public String getDeliveredAt() {
+    public OffsetDateTime getDeliveredAt() {
         return deliveredAt;
     }
 
-    public void setDeliveredAt(String deliveredAt) {
+    public void setDeliveredAt(OffsetDateTime deliveredAt) {
         this.deliveredAt = deliveredAt;
     }
 
@@ -69,19 +70,19 @@ public class Order {
         this.total = total;
     }
 
-    public String getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public OffsetDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }
