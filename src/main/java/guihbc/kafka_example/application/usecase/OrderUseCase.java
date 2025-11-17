@@ -49,7 +49,7 @@ public class OrderUseCase {
         orderEvent.setId(id);
         orderEvent.setEventType(OrderEventType.getEventTypeByOrderStatus(order.getStatus()));
         orderEvent.setData(order);
-        orderEvent.setTimestamps(OffsetDateTime.now());
+        orderEvent.setTimestamp(OffsetDateTime.now());
 
         return orderEvent;
     }

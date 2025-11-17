@@ -5,7 +5,7 @@ import java.time.OffsetDateTime;
 public class Event {
     private String id;
     private OrderEventType eventType;
-    private OffsetDateTime timestamps;
+    private OffsetDateTime timestamp;
 
     public OrderEventType getEventType() {
         return eventType;
@@ -23,11 +23,11 @@ public class Event {
         this.eventType = eventType;
     }
 
-    public OffsetDateTime getTimestamps() {
-        return timestamps;
+    public OffsetDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimestamps(OffsetDateTime timestamps) {
-        this.timestamps = timestamps;
+    public void setTimestamp(OffsetDateTime timestamps) {
+        this.timestamp = timestamps;
     }
 }
