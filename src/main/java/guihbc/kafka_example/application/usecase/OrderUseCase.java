@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrderUseCase {
@@ -35,6 +37,11 @@ public class OrderUseCase {
         return OrderMapper.toOrderOutput(id, order);
     }
 
+    public OrderOutput getOrderById(String id) {
+        Optional<Order> order = this.orderRepositoryPort.getById(id);
+        return  OrderMapper.toOrderOutput(id, order.orElse(null));
+    }
+
     private Order buildCreatedOrder(CreateOrderInput input) {
         Order order = OrderMapper.createOrderDtoToDomain(input);
         order.setTotal(this.calculateTotal(input.products()));
@@ -46,7 +53,8 @@ public class OrderUseCase {
 
     private OrderEvent buildEvent(final String id, final Order order) {
         OrderEvent orderEvent = new OrderEvent();
-        orderEvent.setId(id);
+        orderEvent.setId(UUID.randomUUID().toString());
+        orderEvent.setOrderId(id);
         orderEvent.setEventType(OrderEventType.getEventTypeByOrderStatus(order.getStatus()));
         orderEvent.setData(order);
         orderEvent.setTimestamp(OffsetDateTime.now());

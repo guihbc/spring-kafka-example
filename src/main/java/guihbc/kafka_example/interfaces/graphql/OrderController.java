@@ -5,6 +5,7 @@ import guihbc.kafka_example.application.dto.order.OrderOutput;
 import guihbc.kafka_example.application.usecase.OrderUseCase;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -19,5 +20,10 @@ public class OrderController {
     @MutationMapping
     public OrderOutput createOrder(@Argument CreateOrderInput input) {
         return this.orderUseCase.createOrder(input);
+    }
+
+    @QueryMapping
+    public OrderOutput getOrderById(@Argument String id) {
+        return this.orderUseCase.getOrderById(id);
     }
 }

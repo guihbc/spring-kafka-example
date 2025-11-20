@@ -74,7 +74,7 @@ type Mutation {
 }
 
 type Query {
-    _empty: String
+    getOrderById(id: String!): Order
 }
 
 schema {

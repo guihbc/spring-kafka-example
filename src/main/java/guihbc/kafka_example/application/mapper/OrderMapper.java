@@ -19,6 +19,10 @@ public abstract class OrderMapper {
     }
 
     public static OrderOutput toOrderOutput(String id, Order order) {
+        if (order == null) {
+            return null;
+        }
+
         OrderOutput output = new OrderOutput();
         output.setId(id);
         output.setUserId(order.getUserId());

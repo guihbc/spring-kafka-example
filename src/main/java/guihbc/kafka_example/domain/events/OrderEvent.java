@@ -7,6 +7,7 @@ public class OrderEvent extends Event {
         super();
     }
 
+    private String orderId;
     private Order data;
 
     public Order getData() {
@@ -15,5 +16,13 @@ public class OrderEvent extends Event {
 
     public void setData(Order data) {
         this.data = data;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }
