@@ -69,12 +69,21 @@ type DeliveryAddress {
     complement: String
 }
 
+type OrderEvent {
+    id: ID!
+    orderId: String!
+    eventType: String!
+    timestamp: DateTime!
+    data: Order!
+}
+
 type Mutation {
     createOrder(input: CreateOrderInput!): Order
 }
 
 type Query {
     getOrderById(id: String!): Order
+    getOrderEventsByOrderId(orderId: String!): [OrderEvent!]
 }
 
 schema {

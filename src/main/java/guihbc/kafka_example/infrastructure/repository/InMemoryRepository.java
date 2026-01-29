@@ -5,6 +5,7 @@ import guihbc.kafka_example.domain.events.OrderEvent;
 import guihbc.kafka_example.domain.order.Order;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,5 +38,13 @@ public class InMemoryRepository implements OrderRepositoryPort {
     @Override
     public Optional<Order> getById(String id) {
         return Optional.ofNullable(this.ordersDataBase.get(id));
+    }
+
+    @Override
+    public List<OrderEvent> getOrderEventByOrderId(String orderId) {
+        return this.orderEventDatabase.values()
+                .stream()
+                .filter(event -> orderId.equals(event.getOrderId()))
+                .toList();
     }
 }
