@@ -7,6 +7,8 @@ import guihbc.kafka_example.domain.order.OrderStatus;
 
 public abstract class OrderMapper {
 
+    private OrderMapper() {}
+
     public static Order createOrderDtoToDomain(CreateOrderInput orderInput) {
         Order order = new Order();
         order.setUserId(orderInput.userId());

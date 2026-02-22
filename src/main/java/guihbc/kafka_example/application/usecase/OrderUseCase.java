@@ -10,6 +10,8 @@ import guihbc.kafka_example.domain.events.OrderEvent;
 import guihbc.kafka_example.domain.events.OrderEventType;
 import guihbc.kafka_example.domain.order.Order;
 import guihbc.kafka_example.domain.order.OrderStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -22,6 +24,7 @@ public class OrderUseCase {
 
     private final KafkaEventPublisherPort kafkaEventPublisherPort;
     private final OrderRepositoryPort orderRepositoryPort;
+    private static final Logger logger = LoggerFactory.getLogger(OrderUseCase.class);
 
     public OrderUseCase(KafkaEventPublisherPort kafkaEventPublisherPort, OrderRepositoryPort orderRepositoryPort) {
         this.kafkaEventPublisherPort = kafkaEventPublisherPort;
@@ -34,6 +37,7 @@ public class OrderUseCase {
 
         OrderEvent orderEvent = this.buildEvent(id, order);
         kafkaEventPublisherPort.publish("orders.events.v1", orderEvent);
+        logger.info("Order created successfully");
         return OrderMapper.toOrderOutput(id, order);
     }
 

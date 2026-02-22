@@ -40,10 +40,12 @@ services:
 
   # local password: WHITE_LOTUSs1
 
-  # ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-  #  -Dproject.settings=./sonar-project.properties
-  #  -Dsonar.host.url=http://localhost:9090 \
-  #  -Dsonar.token=sqp_2ab100b36a190b8f80663da7bc0fad4bbbffacf2
+#   ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+#    -Dsonar.projectKey=Kafka-Example \
+#    -Dsonar.projectName='Kafka Example' \
+#    -Dproject.settings=./sonar-project.properties \
+#    -Dsonar.host.url=http://localhost:9090 \
+#    -Dsonar.token=sqp_2ab100b36a190b8f80663da7bc0fad4bbbffacf2
   sonarqube:
     image: sonarqube:community
     container_name: kafka_example_sonarqube

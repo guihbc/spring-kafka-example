@@ -5,6 +5,8 @@ import guihbc.kafka_example.domain.order.DeliveryAddress;
 
 public abstract class DeliveryAddressMapper {
 
+    private DeliveryAddressMapper() {}
+
     public static DeliveryAddress toDomain(DeliveryAddressInput input) {
        return new DeliveryAddress(
                 input.street(),

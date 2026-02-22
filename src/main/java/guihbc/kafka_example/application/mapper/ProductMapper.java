@@ -8,6 +8,8 @@ import java.util.List;
 
 public abstract class ProductMapper {
 
+    private ProductMapper() {}
+
     private static Product toDomain(ProductInput input) {
         return new Product(
                 input.id(),
