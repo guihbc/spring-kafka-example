@@ -1,7 +1,7 @@
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
-    container_name: zookeeper
+    container_name: kafka_example_zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -10,7 +10,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.5.0
-    container_name: kafka
+    container_name: kafka_example_kafka
     depends_on:
       - zookeeper
     ports:
@@ -28,7 +28,7 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
+    container_name: kafka_example_kafka-ui
     ports:
       - "8081:8080"
     depends_on:
@@ -37,3 +37,40 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  # local password: WHITE_LOTUSs1
+
+  # ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  #  -Dproject.settings=./sonar-project.properties
+  #  -Dsonar.host.url=http://localhost:9090 \
+  #  -Dsonar.token=sqp_2ab100b36a190b8f80663da7bc0fad4bbbffacf2
+  sonarqube:
+    image: sonarqube:community
+    container_name: kafka_example_sonarqube
+    depends_on:
+      - sonar-postgres
+    ports:
+      - "9090:9000"
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonar-postgres/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: sonar
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+
+  sonar-postgres:
+    image: postgres:17-alpine
+    container_name: kafka_example_sonar_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: sonar
+      POSTGRES_USER: sonar
+      POSTGRES_DB: sonar
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
