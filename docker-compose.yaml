@@ -71,8 +71,19 @@ services:
       POSTGRES_PASSWORD: sonar
       POSTGRES_USER: sonar
       POSTGRES_DB: sonar
+  # Local user: guilherme
+  # Password: WHITE_LOTUSs1
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: kafka_example_jenkins
+    ports:
+      - "8082:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
 
 volumes:
   sonarqube_data:
   sonarqube_extensions:
   sonarqube_logs:
+  jenkins_home:
