@@ -74,7 +74,7 @@ services:
   # Local user: guilherme
   # Password: WHITE_LOTUSs1
   jenkins:
-    image: jenkins/jenkins:lts
+    build: ./jenkins
     container_name: kafka_example_jenkins
     ports:
       - "8082:8080"
