@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         jdk 'graalvm21'
+        maven 'Default'
     }
 
     stages {
@@ -22,10 +23,8 @@ pipeline {
 
         stage('Build & Test Project') {
             steps {
-                withMaven(maven: 'Default') {
-                    sh 'mvn -version'
-                    sh 'mvn clean verify'
-                }
+                sh 'mvn -version'
+                sh 'mvn clean verify'
             }
         }
 
